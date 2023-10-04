@@ -35,7 +35,7 @@
   })(window,document,'script','dataLayer','GTM-NXF59J4');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Slot-TTA</title>
+  <title>Align-Prop</title>
   <link rel="stylesheet" href="./static/css//range_style_new.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -151,43 +151,18 @@
     <div class="hero-body column is-four-fifths">
 
       <!-- Poster. -->
+      <div class="columns mt-4">
 
-
-      
-      <div class="columns mb-0 is-vcentered  has-text-centered">
-          <div  id="interpolation-ex3-wrapper">
-            <!-- <p class="is-size-5 pb-1">Segmentation Accuracy</p> -->
-            <img src="./static/slot_tta_gifs/ex3_frames/frame0001.png"
+            <img src="teaser.png"
                  class="interpolation-image"
                  alt="Seg Acc Curve."/>       
-          </div>
-      </div>
 
-      <!-- <section class="all-sliders"> -->
-        <!-- <label>
-          <input class="slider" id="range-slider" type="range" min="1" step="0.01" max="100" value="80">
-        </label> -->
-      <!-- </section>       -->
-      <div class="columns  is-vcentered">
-        <div class="column  pr-0 pl-0 ml-0 mr-0 has-text-centered" id="slider-container">
-          <!-- <label>
-          <input class="slider" id="range-slider-poster" type="range" min="1" step="1" max="265" value="0">          
-        </label> -->
-        <input class="is-fullwidth is-large is-info" id="range-slider-poster" name="slider" type="range" value=0>
-              
-          <!-- <input class="slider is-fullwidth is-large is-info"
-                 id="interpolation-slider"
-                 step="1" min="0" max="265" value="0" type="range">     -->
-        </div>        
-        <!-- <div class="column pr-0 pl-0 ml-0 mr-0">
-          <label for="slider">0</label>
 
-        </div> -->
-        
-      </div>
+      </div>   
+      
 
       <h2 class="subtitle has-text-centered">
-        <span>Slot-TTA</span> improves segmentation accuracy by optimizing over reconstruction loss per test sample.
+        We present a direct backpropagation-based approach to adapt text-to-image diffusion models for desired reward function. The above examples showcase the adaptation of diffusion model output (epoch 0) through a sequence of adaptation steps (epoch 1-10) to different reward functions. The reward function in the left two examples is that of concept removal trained to disregard the concept of "books," despite the prompt explicitly mentioning "fruits and books." The reward function for the adaptation on the right is that of human-preference alignment crafted from human rankings of image-text pairs. As shown in all the examples, the proposed approach can effectively align the diffusion model with the reward function
       </h2>
     <!--/ Poster. -->
     </div>
@@ -230,17 +205,17 @@
       <div class="columns is-centered has-text-centered">
           <div class="column" style="border-radius: 10px; background-color: rgb(245,245,245)">
               <h2 class="title is-3">
-                  <span class="method-name mt-3">Slot-TTA</span>
+                  <span class="method-name mt-3">Align-Prop</span>
               </h2>
               <p style="padding: 10px;">
               </p><div id="method-overview-wrapper">
-                  <img src="method.pdf" alt="Slot TTA method." class="method-overview-full-img  method-overview" draggable="false" style="display: inline;">
+                  <img src="method.png" alt="Slot TTA method." class="method-overview-full-img  method-overview" draggable="false" style="display: inline;">
               </div>
                       <p style="padding: 10px;">
                   </p><div class="method-overview-text has-text-justified">
                       <p>
-                        <p class="has-text-weight-semibold">Model architecture for Slot-TTA for posed multi-view or single view RGB images <strong >(top)</strong> and 3D point clouds <strong >(bottom)</strong>. </p>
-                        Slot-TTA maps the input (multi-view posed) RGB images or 3D point cloud to a set of token features with appropriate encoder backbones. It then maps these token features  to a set of slot vectors using Slot Attention. Finally, it  decodes each slot into its respective segmentation mask and RGB image or 3D point cloud. It  uses weighted averaging or maxpooling to fuse renders across all slots. For RGB images, we show results for multi-view and single-view settings, where in the multi-view setting the decoder is conditioned on a target camera-viewpoint. We train Slot-TTA using reconstruction and segmentation losses. At test time, we optimize only the reconstruction loss. 
+                        <p class="has-text-weight-semibold">Model architecture for Align-Prop. <strong >(top)</strong> and 3D point clouds <strong >(bottom)</strong>. </p>
+                        When presented with a batch of prompts, Align-Prop initiates the generation of images from noise through DDIM Sampling. Subsequently, these generated images undergo evaluation by the Reward model to acquire a corresponding reward score. The optimization process involves updating the weights in the diffusion process by minimizing the negative of the obtained reward through gradient descent. To mitigate overfitting, we randomize the number of time-steps we backpropagate gradients to. 
                       </p>
                   </div>
               </div>
@@ -258,11 +233,18 @@
 
 
 
-        <h2 class="title is-3 has-text-centered">Decomposing 3D point clouds</h2>
+        <h2 class="title is-3 has-text-centered">Disabling LoRA Weights</h2>
         <p>
-          We visualize point cloud reconstruction and segmentation during test-time adaptation steps. As can be seen, segmentation improves when optimizing over reconstruction objective via gradient descent at test-time on a single test sample.
+          We illustrate the impact of deactivating finetuned LoRA weights across varying ranges of diffusion timesteps during inference. The visualization highlights that earlier timesteps predominantly contribute to semantic aspects, whereas the later timesteps are instrumental in capturing fine-grained details.
         </p>    
-        <div class="columns mt-4">
+        <div class="column ml-4"> 
+          <div  id="interpolation-ex7-wrapper">
+            <img src="./lora_disable.png"
+                 class="interpolation-image"
+                 alt="Seg Acc Curve."/>       
+          </div>                        
+        </div>         
+        <!-- <div class="columns mt-4">
           <div class="column"> 
             <div  id="interpolation-ex6-wrapper">
               <img src="./static/slot_tta_gifs/ex6.gif"
@@ -270,35 +252,18 @@
                    alt="Seg Acc Curve."/>       
             </div>
           </div>
-          <div class="column ml-4"> 
-            <div  id="interpolation-ex7-wrapper">
-              <img src="./static/slot_tta_gifs/ex7.gif"
-                   class="interpolation-image"
-                   alt="Seg Acc Curve."/>       
-            </div>                        
-          </div> 
 
-      </div>   
 
-        <h2 class="title pt-5 has-text-centered">Decomposing RGB images in multi-view scenes</h2>
+      </div>    -->
+
+        <h2 class="title pt-5 has-text-centered">Sample and Data Efficiency in Reward Finetuning</h2>
         <div  class="content has-text-justified">
           <p>
-            We visualize RGB reconstruction and segmentation during test-time adaptation steps. As can be seen, segmentation of the target viewpoint improves when optimizing over view synthesis objective via gradient descent at test-time on a single test scene. </p>
+            Reward finetuning results  on multiple reward functions. In the top half of the figure, we compare the data efficiency of Align-Prop and DDPO. In the bottom half of the figure we compare the convergence speed of Align-Prop and DDPO. As seen Align-Prop outperforms DDPO on both metrics.
             <div class="columns mt-4">
-              <div class="column"> 
-                <div  id="interpolation-ex4-wrapper">
-                  <img src="./static/slot_tta_gifs/ex4.gif"
-                       class="interpolation-image"
-                       alt="Seg Acc Curve."/>       
-                </div>
-              </div>
-              <div class="column ml-4"> 
-                <div  id="interpolation-ex5-wrapper">
-                  <img src="./static/slot_tta_gifs/ex5.gif"
-                       class="interpolation-image"
-                       alt="Seg Acc Curve."/>       
-                </div>                        
-              </div> 
+              <img src="./reward_tuning.png"
+              class="interpolation-image"
+              alt="Seg Acc Curve."/>   
     
           </div>   
         </div>
@@ -308,79 +273,19 @@
   </div>
 </section>
 
-<section class="hero is-light is-small">  
-  <div class="hero-body">
-    
-    <div class="container">
-      
-      <h2 class="subtitle has-text-centered">Predicted 360&deg; multi-view videos of RGB and Segmentation mask. </h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos//one.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos//two.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos//three.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos//four.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos//five.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos//six.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <h2 class="subtitle has-text-centered pt-5">We find that novel view synthesis ability of Slot-TTA improves after test-time adaptation. </h2>
-    </div>
-  </div>
-</section>
-
 <section class="section">
   <div class="container is-max-widescreen">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">Decomposing 2D RGB images</h2>
+        <h2 class="title is-3 has-text-centered">Generalization to new text prompts</h2>
         <p>
-          We visualize RGB reconstruction during test-time adaptation steps. As can be seen, segmentation improves when optimizing over reconstruction objective via gradient descent at test-time on a single test sample.
+          Qualitative comparison with baselines is conducted on novel animals that were not encountered during the training phase. In this scenario, both Align-Prop and the baselines are trained using an Aesthetic reward model.
         </p>    
         <div class="columns mt-4">
-          <div class="column"> 
-            <div  id="interpolation-ex1-wrapper">
-              <img src="./static/slot_tta_gifs/ex1.gif"
-                  class="interpolation-image"
-                  alt="Seg Acc Curve."/>       
-            </div>
-          </div>
-          <div class="column ml-4"> 
-            <div  id="interpolation-ex2-wrapper">
-              <img src="./static/slot_tta_gifs/ex2.gif"
-                  class="interpolation-image"
-                  alt="Seg Acc Curve."/>       
-            </div>                        
-          </div> 
+
+          <img src="animal_baselines_2.png"
+              class="interpolation-image"
+              alt="Seg Acc Curve."/>       
 
         </div>
       </div>
@@ -389,6 +294,49 @@
 </section>
     
 
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Human Preference V2</h2>
+        <p>
+          In this Figure we qualitatively compare Align-Prop with Stable diffusion while using multiple prompts of HPS v2 evaluation prompt dataset. As can be seen Align-Prop achieves higher fidelity results with better image-text alignment.
+        </p>    
+        <div class="columns mt-4">
+
+          <img src="hps_results.png"
+              class="interpolation-image"
+              alt="Seg Acc Curve."/>       
+
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Mixing Results</h2>
+        <p>
+          In this Figure we show additional mixing results between compressibilty and Aesthetic model. 
+        </p>    
+        <div class="columns mt-4">
+
+          <img src="mixing_full.png"
+              class="interpolation-image"
+              alt="Seg Acc Curve."/>       
+
+        </div>
+      </div>
+    </div>
+</div>
+</section>
 
 
 <!-- / Results Overview -->
