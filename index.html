@@ -215,7 +215,7 @@
                   </p><div class="method-overview-text has-text-justified">
                       <p>
                         <p class="has-text-weight-semibold">Model architecture for AlignProp. </p>
-                        When presented with a batch of prompts, AlignProp initiates the generation of images from noise through DDIM Sampling. Subsequently, these generated images undergo evaluation by the Reward model to acquire a corresponding reward score. The optimization process involves updating the weights in the diffusion process by minimizing the negative of the obtained reward through gradient descent. To mitigate overfitting, we randomize the number of time-steps we backpropagate gradients to. 
+                        Given a batch of prompts, AlignProp generates images from noise through DDIM Sampling. Subsequently, these generated images undergo evaluation by the Reward model to acquire a corresponding reward score. The optimization process involves updating the weights in the diffusion process by minimizing the negative of the obtained reward through gradient descent. To mitigate overfitting, we randomize the number of time-steps we backpropagate gradients to. 
                       </p>
                   </div>
               </div>
