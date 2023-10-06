@@ -321,23 +321,93 @@
 </section> -->
 
 
-
-
 <section class="section">
   <div class="container is-max-widescreen">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">Mixing Results</h2>
-        <p>
-          In this context, we demonstrate the ability of AlignProp to interpolate between different reward functions during the inference phase. We draw inspiration from the concept presented in <a href="https://arxiv.org/abs/2203.05482">ModelSoup</a>, which showcases how averaging the weights of multiple fine-tuned models can enhance image classification accuracy.Expanding upon this idea, we extend it to the domain of image editing, revealing that averaging the LoRA weights of diffusion models trained with distinct reward functions can yield images that satisfy multiple reward criteria. AlignProp adeptly demonstrates its capacity to interpolate between distinct reward functions, achieving the highest overall reward when the mixing coefficient is set to 0.5.
-        </p>    
-        <div class="columns mt-4">
+        <h2 class="title is-3 has-text-centered">Interactive Mixing Results</h2>
 
-          <img src="mixing_full.png"
+        <p>
+          In this context, we demonstrate the ability of AlignProp to interpolate between different reward functions during the inference phase. We draw inspiration from the concept presented in <a href="https://arxiv.org/abs/2203.05482">ModelSoup</a>, which showcases how averaging the weights of multiple fine-tuned models can enhance image classification accuracy.Expanding upon this idea, we extend it to the domain of image editing, revealing that averaging the LoRA weights of diffusion models trained with distinct reward functions can yield images that satisfy multiple reward criteria. AlignProp adeptly demonstrates its capacity to interpolate between distinct reward functions, achieving the highest overall reward when the mixing coefficient is set to 0.5. 
+          <strong>Please move the slider to visualize results with different mixing coefficients.</strong>
+        </p>    
+ 
+      <div class="pt-4 columns mb-0 is-vcentered  has-text-centered">
+          <div  class="column">
+            <h2 class="is-size-5">Aesthetic Model</h2>
+            <img src="./animals/spider/0.png"
+                class="interpolation-image"
+                alt="Seg Acc Curve."/>       
+          </div>        
+          <div  class="column" id="interpolation-ex3-wrapper">
+            <h2 class="is-size-5">Hybrid Model</h2>
+            <img src="./animals/spider/5.png"
+                 class="interpolation-image"
+                 alt="Seg Acc Curve."/>       
+          </div>
+          <div  class="column">
+            <h2 class="is-size-5">Compression Model</h2>
+            <img src="./animals/spider/10.png"
+                 class="interpolation-image"
+                 alt="Seg Acc Curve."/>       
+          </div>          
+      </div>
+
+      <div class="pt-0 columns mb-0 is-vcentered  has-text-centered">
+        <div  class="column">
+          <h2 class="is-size-5">Aesthetic Model</h2>
+          <img src="./animals/sheep/0.png"
               class="interpolation-image"
               alt="Seg Acc Curve."/>       
+        </div>        
+        <div  class="column" id="interpolation-ex4-wrapper">
+          <h2 class="is-size-5">Hybrid Model</h2>
+          <img src="./animals/sheep/5.png"
+               class="interpolation-image"
+               alt="Seg Acc Curve."/>       
+        </div>
+        <div  class="column">
+          <h2 class="is-size-5">Compression Model</h2>
+          <img src="./animals/sheep/10.png"
+               class="interpolation-image"
+               alt="Seg Acc Curve."/>       
+        </div>          
+    </div>
+
+      <!-- <section class="all-sliders"> -->
+        <!-- <label>
+          <input class="slider" id="range-slider" type="range" min="1" step="0.01" max="100" value="80">
+        </label> -->
+      <!-- </section>       -->
+      <div class="columns pt-5">
+        <div class="column is-half is-offset-one-quarter">
+      
+      <div class="columns  is-vcentered">
+
+        <div class="column is-11 pr-0 pl-0 ml-0 mr-0 has-text-centered" id="slider-container">
+          <!-- <label>
+          <input class="slider" id="range-slider-poster" type="range" min="1" step="1" max="265" value="0">          
+        </label> -->
+        <input class="is-fullwidth is-large is-info" id="range-slider-poster" name="slider" type="range" value=5>
+              
+          <!-- <input class="slider is-fullwidth is-large is-info"
+                 id="interpolation-slider"
+                 step="1" min="0" max="265" value="0" type="range">     -->
+        </div>        
+        <div class="column pr-0 pl-0 ml-0 mr-0">
+          <label for="slider">0.5</label>
 
         </div>
+        
+      </div>
+    </div>
+  </div>
+
+      <h2 class="subtitle has-text-centered">
+        Hybrid Model - Mixing Coefficient (&alpha;)
+      </h2>
+
+
       </div>
     </div>
 </div>
@@ -385,7 +455,7 @@
 </footer>
 
 <script src="./static/js/index.js"></script>
-<script src="./static/js/prism.js"></script>
+<!-- <script src="./static/js/prism.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/prismjs-bibtex@2.0.1/prism-bibtex.js"
     integrity="sha256-+dK6uqUp/DnP6ef97s8XcoynBnGe5vM5gvBECH0EB3U=" crossorigin="anonymous">
     </script>

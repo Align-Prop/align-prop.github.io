@@ -2,11 +2,12 @@ window.HELP_IMPROVE_VIDEOJS = false;
 
 var INTERP_EX1 = "./static/slot_tta_gifs/ex1_frames";
 var INTERP_EX2 = "./static/slot_tta_gifs/ex2_frames";
-var INTERP_EX4 = "./static/slot_tta_gifs/ex4_frames";
+// var INTERP_EX4 = "./static/slot_tta_gifs/ex4_frames";
 var INTERP_EX5 = "./static/slot_tta_gifs/ex5_frames";
 var INTERP_EX6 = "./static/slot_tta_gifs/ex6_frames";
 var INTERP_EX7 = "./static/slot_tta_gifs/ex7_frames";
-var INTERP_EX3 = "./static/slot_tta_gifs/ex3_frames";
+var INTERP_EX3 = "./animals/spider/";
+var INTERP_EX4 = "./animals/sheep/";
 var NUM_INTERP_FRAMES = 11;
 var NUM_INTERP_FRAMES_PC = 130;
 
@@ -22,18 +23,27 @@ function preloadInterpolationImages() {
   for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
 
 
-    var path = INTERP_EX3 + '/frame' + String(i).padStart(4, '0') + '.png';
+    var path = INTERP_EX3 + '/' + String(i) + '.png';
     interp_images_ex3[i] = new Image();
-    interp_images_ex3[i].src = path;        
+    interp_images_ex3[i].src = path; 
+    
+    var path = INTERP_EX4 + '/' + String(i) + '.png';
+    interp_images_ex4[i] = new Image();
+    interp_images_ex4[i].src = path;     
 
 }}
 
 
 function setEx3(i) {
     var ex3 = interp_images_ex3[i];
-    $('#interpolation-ex3-wrapper')[0].children[0].src = ex3.src
+    $('#interpolation-ex3-wrapper')[0].children[1].src = ex3.src
 }
 
+
+function setEx4(i) {
+    var ex4 = interp_images_ex4[i];
+    $('#interpolation-ex4-wrapper')[0].children[1].src = ex4.src
+}
 
 $(document).ready(function() {
     var options = {
@@ -82,8 +92,9 @@ $(document).ready(function() {
 
     $('#range-slider-poster').on('input', function(event) {
       setEx3(this.value);
+      setEx4(this.value);
     });
-    setEx3(7);
+    // setEx3(5);
     $('#range-slider-poster').prop('max', NUM_INTERP_FRAMES - 1);
 
 
