@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta charset="utf-8">
-  <meta property="og:title" content="Slot-TTA" />
+  <meta property="og:title" content="Align-Prop" />
   <meta property="og:description" content="We propose Slot-TTA, a  semi-supervised slot-centric scene decomposition model that at test time is adapted per scene  through gradient descent on reconstruction or cross-view synthesis objectives." />
   <meta property="og:url" content="https://slot-tta.github.io/" />
   <meta property="og:image" content="https://slot-tta.github.io/static/images/preview.jpeg" />
@@ -17,15 +17,15 @@
 
   <!-- twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Slot-TTA" />
+  <meta name="twitter:title" content="Align-Prop" />
   <meta name="twitter:description"
-      content="Slot-TTA, a semi-supervised slot-centric scene decomposition model that at test time is adapted per scene through gradient descent on reconstruction or cross-view synthesis objectives." />
-  <meta name="twitter:url" content="https://slot-tta.github.io/" />
-  <meta name="twitter:image" content="https://slot-tta.github.io/static/images/preview.jpeg" />
+      content="Align-Prop, a semi-supervised slot-centric scene decomposition model that at test time is adapted per scene through gradient descent on reconstruction or cross-view synthesis objectives." />
+  <meta name="twitter:url" content="https://align-prop.github.io/" />
+  <meta name="twitter:image" content="https://align-prop.github.io/static/images/preview.jpeg" />
   <meta name="twitter:site" content="@mihirp98" />
-  <meta name="twitter:image" content="https://slot-tta.github.io/static/images/preview.jpeg" />
-  <meta name="twitter:image:src" content="https://slot-tta.github.io/static/images/preview.jpeg" />
-  <meta name="twitter:image_alt" content="Slot-TTA" />
+  <meta name="twitter:image" content="https://align-prop.github.io/static/images/preview.jpeg" />
+  <meta name="twitter:image:src" content="https://align-prop.github.io/static/images/preview.jpeg" />
+  <meta name="twitter:image_alt" content="align-prop" />
 
   <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -146,27 +146,27 @@
 </section>
 
 <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-    <div class="hero-body column is-four-fifths">
+  <!-- <div class="container is-max-desktop"> -->
+    <div class="is-centered has-text-centered">
+    <div class="hero-body ">
 
       <!-- Poster. -->
-      <div class="columns mt-4">
+      <!-- <div class="columns mt-4"> -->
 
-            <img src="teaser.png"
-                 class="interpolation-image"
-                 alt="Seg Acc Curve."/>       
+        <video   width="1200" autoplay muted>
+          <source src="promo2.m4v" type="video/mp4">
+          Your browser does not support the video tag.
+      </video>
 
-
-      </div>   
+      <!-- </div>    -->
       
 
-      <h2 class="subtitle has-text-centered">
-        We present a direct backpropagation-based approach to adapt text-to-image diffusion models for desired reward function. The above examples showcase the adaptation of diffusion model output (epoch 0) through a sequence of adaptation steps (epoch 1-10) to different reward functions. The reward function in the left two examples is that of concept removal trained to disregard the concept of "books," despite the prompt explicitly mentioning "fruits and books." The reward function for the adaptation on the right is that of human-preference alignment crafted from human rankings of image-text pairs. As shown in all the examples, the proposed approach can effectively align the diffusion model with the reward function
-      </h2>
+      <h2 class="pt-1 container is-max-desktop subtitle has-text-centered">
+        AlignProp is a direct backpropagation-based approach to finetune text-to-image diffusion models for desired reward function. Above we show finetuning results for various reward functions. 
+      </h2> 
     <!--/ Poster. -->
     </div>
-  </div>
+  <!-- </div> -->
   </div>
 </section>
 
@@ -205,7 +205,7 @@
       <div class="columns is-centered has-text-centered">
           <div class="column" style="border-radius: 10px; background-color: rgb(245,245,245)">
               <h2 class="title is-3">
-                  <span class="method-name mt-3">Align-Prop</span>
+                  <span class="method-name mt-3">AlignProp</span>
               </h2>
               <p style="padding: 10px;">
               </p><div id="method-overview-wrapper">
@@ -214,8 +214,8 @@
                       <p style="padding: 10px;">
                   </p><div class="method-overview-text has-text-justified">
                       <p>
-                        <p class="has-text-weight-semibold">Model architecture for Align-Prop. <strong >(top)</strong> and 3D point clouds <strong >(bottom)</strong>. </p>
-                        When presented with a batch of prompts, Align-Prop initiates the generation of images from noise through DDIM Sampling. Subsequently, these generated images undergo evaluation by the Reward model to acquire a corresponding reward score. The optimization process involves updating the weights in the diffusion process by minimizing the negative of the obtained reward through gradient descent. To mitigate overfitting, we randomize the number of time-steps we backpropagate gradients to. 
+                        <p class="has-text-weight-semibold">Model architecture for AlignProp. </p>
+                        When presented with a batch of prompts, AlignProp initiates the generation of images from noise through DDIM Sampling. Subsequently, these generated images undergo evaluation by the Reward model to acquire a corresponding reward score. The optimization process involves updating the weights in the diffusion process by minimizing the negative of the obtained reward through gradient descent. To mitigate overfitting, we randomize the number of time-steps we backpropagate gradients to. 
                       </p>
                   </div>
               </div>
@@ -259,7 +259,7 @@
         <h2 class="title pt-5 has-text-centered">Sample and Data Efficiency in Reward Finetuning</h2>
         <div  class="content has-text-justified">
           <p>
-            Reward finetuning results  on multiple reward functions. In the top half of the figure, we compare the data efficiency of Align-Prop and DDPO. In the bottom half of the figure we compare the convergence speed of Align-Prop and DDPO. As seen Align-Prop outperforms DDPO on both metrics.
+            Reward finetuning results  on multiple reward functions. In the top half of the figure, we compare the data efficiency of AlignProp and DDPO. In the bottom half of the figure we compare the convergence speed of AlignProp and DDPO. As seen AlignProp outperforms DDPO on both metrics.
             <div class="columns mt-4">
               <img src="./reward_tuning.png"
               class="interpolation-image"
@@ -279,7 +279,7 @@
       <div class="column is-full-width">
         <h2 class="title is-3 has-text-centered">Generalization to new text prompts</h2>
         <p>
-          Qualitative comparison with baselines is conducted on novel animals that were not encountered during the training phase. In this scenario, both Align-Prop and the baselines are trained using an Aesthetic reward model.
+          Qualitative comparison with baselines is conducted on novel animals that were not encountered during the training phase. In this scenario, both AlignProp and the baselines are trained using an Aesthetic reward model.
         </p>    
         <div class="columns mt-4">
 
@@ -301,7 +301,7 @@
       <div class="column is-full-width">
         <h2 class="title is-3 has-text-centered">Human Preference V2</h2>
         <p>
-          In this Figure we qualitatively compare Align-Prop with Stable diffusion while using multiple prompts of HPS v2 evaluation prompt dataset. As can be seen Align-Prop achieves higher fidelity results with better image-text alignment.
+          In this Figure we qualitatively compare AlignProp with Stable diffusion while using multiple prompts of HPS v2 evaluation prompt dataset. As can be seen AlignProp achieves higher fidelity results with better image-text alignment.
         </p>    
         <div class="columns mt-4">
 
@@ -370,7 +370,7 @@
          href="https://arxiv.org/pdf/2203.11194">
         <i class="fas fa-file-pdf"></i>
       </a>
-      <a class="icon-link" href="https://github.com/mihirp1998/Slot-TTA.git" class="external-link" disabled>
+      <a class="icon-link" href="https://github.com/align-prop/align-prop.github.io" class="external-link" disabled>
         <i class="fab fa-github"></i>
       <div class="column is-8">
 
