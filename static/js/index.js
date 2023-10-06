@@ -7,7 +7,7 @@ var INTERP_EX5 = "./static/slot_tta_gifs/ex5_frames";
 var INTERP_EX6 = "./static/slot_tta_gifs/ex6_frames";
 var INTERP_EX7 = "./static/slot_tta_gifs/ex7_frames";
 var INTERP_EX3 = "./static/slot_tta_gifs/ex3_frames";
-var NUM_INTERP_FRAMES = 264;
+var NUM_INTERP_FRAMES = 11;
 var NUM_INTERP_FRAMES_PC = 130;
 
 var interp_images_ex1 = [];
@@ -19,7 +19,7 @@ var interp_images_ex6 = [];
 var interp_images_ex7 = [];
 
 function preloadInterpolationImages() {
-  for (var i = 1; i < NUM_INTERP_FRAMES; i++) {
+  for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
 
 
     var path = INTERP_EX3 + '/frame' + String(i).padStart(4, '0') + '.png';
@@ -53,9 +53,10 @@ $(document).ready(function() {
     const label = document.querySelector("label");
     
     input.addEventListener("input", event => {
-      const value = Number(input.value) / 100;
-      input.style.setProperty("--thumb-rotate", `${value * 720}deg`);
-    //   label.innerHTML = Math.round(value * 50);
+      const value = Number(input.value) / 10;
+      console.log(value);
+    //   input.style.setProperty("--thumb-rotate", `${value * 720}deg`);
+      label.innerHTML = value.toFixed(1);
     });
     
 
@@ -82,7 +83,7 @@ $(document).ready(function() {
     $('#range-slider-poster').on('input', function(event) {
       setEx3(this.value);
     });
-    setEx3(1);
+    setEx3(7);
     $('#range-slider-poster').prop('max', NUM_INTERP_FRAMES - 1);
 
 
@@ -92,7 +93,7 @@ $(document).ready(function() {
 
     var slider_poster = document.getElementById("range-slider-poster");
     // Flag to control the automatic movement
-    var autoMove = true;
+    var autoMove = false;
     
     // Function to update slider value every 1 second
     var interval = setInterval(function() {
